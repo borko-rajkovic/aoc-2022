@@ -9,6 +9,8 @@ const input =
 
 console.log(input);
 
+// alternative: (.)(?!\1)(.)(?!\1|\2)(.)(?!\1|\2|\3)
+
 // More test cases:
 //
 // mjqjpqmgbljsphdztnvjfqwrcgsmlb 7

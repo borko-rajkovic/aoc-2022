@@ -32,12 +32,28 @@ const makeRegex = (n) => {
   return RegExp(result.join(""));
 };
 
+const makeRegexAlternative = (n) => {
+  const result = [];
+  for (let i = 0; i < n - 1; i++) {
+    const something = [];
+    for (let j = 0; j < i + 1; j++) {
+      something.push(`\\${j + 1}`);
+    }
+    result.push("(.)(?!" + something.join("|") + ")");
+  }
+
+  return RegExp(result.join(""));
+};
+
+// console.log(makeRegexAlternative(14))
+// console.log(fs.readFileSync(__dirname + path.sep + file_name, "utf8").match(makeRegexAlternative(14)).index + 14)
+
 const findFirstUniqueSubstringOfNCharacters = (s, n) =>
   s.match(makeRegex(n))?.index ? s.match(makeRegex(n)).index + n : -1;
 
-console.log(
-  findFirstUniqueSubstringOfNCharacters(
-    fs.readFileSync(__dirname + path.sep + file_name, "utf8"),
-    14
-  )
-);
+// console.log(
+//   findFirstUniqueSubstringOfNCharacters(
+//     fs.readFileSync(__dirname + path.sep + file_name, "utf8"),
+//     14
+//   )
+// );
